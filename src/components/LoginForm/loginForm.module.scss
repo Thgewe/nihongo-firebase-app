@@ -1,0 +1,13 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border: 1px solid var(--color-minor);
+  background-color: var(--color-primary-light);
+  border-radius: 12px;
+  padding: 20px;
+  gap: 20px;
+  & .title {
+
+  }
+}

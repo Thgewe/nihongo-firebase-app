@@ -1,0 +1,28 @@
+.login {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 160px);
+  & .container {
+    max-width: var(--max-width-dekstop);
+  }
+  & .form {
+    width: 300px;
+  }
+  & .text {
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+    & span {
+      color: var(--color-warning);
+      cursor: pointer;
+      display: inline-block;
+      transition: transform 0.3s;
+      margin-left: 10px;
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+  }
+}

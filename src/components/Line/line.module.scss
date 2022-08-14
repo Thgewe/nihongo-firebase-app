@@ -1,0 +1,36 @@
+.line {
+  position: relative;
+
+  & .text {
+    min-height: 40px;
+    display: flex;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    line-height: 1em;
+    row-gap: 20px;
+    transition: opacity 0.2s;
+  }
+
+  & .input {
+    width: 100%;
+    border: none;
+    background-color: var(--color-primary);
+    color: var(--color-extra-light);
+    outline: none;
+    padding: 5px 10px;
+    font-size: 20px;
+    border-radius: 8px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    display: block;
+  }
+
+  & .hidden {
+    display: none;
+  }
+  & .covered {
+    opacity: 0.5;
+    user-select: none;
+  }
+}

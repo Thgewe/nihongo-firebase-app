@@ -1,0 +1,25 @@
+.word {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  align-items: center;
+
+  & .furigana {
+    line-height: 0.6em;
+    font-size: 0.6em;
+    width: fit-content;
+  }
+  & .furiganaNormal {
+    line-height: 1em;
+    padding-bottom: 0.03em;
+    width: fit-content;
+  }
+
+  & .kanji {
+    line-height: initial;
+    width: fit-content;
+  }
+  & .hide {
+    display: none;
+  }
+}

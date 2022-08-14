@@ -1,0 +1,15 @@
+.nav {
+
+  & .logout {
+    background-color: transparent;
+    border: none;
+    color: var(--color-extra-light);
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.1s;
+    display: block;
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+}

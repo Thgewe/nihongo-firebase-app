@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+import {useDispatch, useSelector} from "react-redux";
+import {BrowserRouter} from "react-router-dom";
+import Header from "./components/Header/Header";
+import AppRouter from "./components/AppRouter";
+import Loader from "./components/Loader/Loader";
+import Layout from "./components/Layout/Layout";
+
+import {auth, db} from "./firebase";
+import {loginAuthAction, logoutAuthAction} from "./store/authReducer";
+import {useCollection, useCollectionData} from "react-firebase-hooks/firestore";
+import {useAuthState} from "react-firebase-hooks/auth";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const dispatch = useDispatch();
+    // const isAuth = useSelector(state => state.auth);
+
+    const [user, loading] = useAuthState(auth);
+
+    auth.onAuthStateChanged((user) => {
+        dispatch(user === null ? logoutAuthAction() : loginAuthAction())
+    })
+
+    if (loading) return <Loader />
+    return (
+        <BrowserRouter>
+            <Layout>
+                <AppRouter />
+            </Layout>
+            {/*<Header />*/}
+
+        </BrowserRouter>
+    );
 }
 
 export default App;

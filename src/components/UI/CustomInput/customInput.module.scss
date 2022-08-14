@@ -1,0 +1,17 @@
+.input {
+  border: 1px solid var(--color-primary);
+  font-family: 'Roboto', sans-serif;
+  padding: 10px 15px;
+  border-radius: 12px;
+  outline: none;
+  transition: outline 1000ms;
+  &:focus {
+    -webkit-box-shadow: 0px 0px 12px -6px rgba(3, 169, 244, 1) inset;
+    -moz-box-shadow: 0px 0px 12px -6px rgba(3, 169, 244, 1) inset;
+    box-shadow: 0px 0px 12px -6px rgba(3, 169, 244, 1) inset;
+  }
+  &::placeholder {
+    font-family: 'Roboto', sans-serif;
+    color: var(--color-minor);
+  }
+}

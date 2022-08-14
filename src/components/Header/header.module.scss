@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  background-color: var(--color-primary);
+  color: var(--color-extra-light);
+  & .container {
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: calc(var(--max-width-dekstop) + 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 64px;
+  }
+  & .logo {
+    font-size: 30px;
+    user-select: none;
+    font-family: var(--nihhon-font-family);
+  }
+}
