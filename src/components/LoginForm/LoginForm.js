@@ -5,7 +5,7 @@ import CustomButton from "../UI/CustomButton/CustomButton";
 import Warning from "../UI/Warning/Warning";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword  } from "firebase/auth";
 import { auth } from "../../firebase";
-import {useDispatch, useSelector} from "react-redux";
+import {useDispatch} from "react-redux";
 import {loginAuthAction} from "../../store/authReducer";
 
 const LoginForm = ({registration}) => {
@@ -16,7 +16,6 @@ const LoginForm = ({registration}) => {
     const [error, setError] = useState('');
 
     const dispatch = useDispatch();
-    const isAuth = useSelector(state => state.auth);
 
     const onSubmit = (e) => {
         e.preventDefault();

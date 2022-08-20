@@ -1,0 +1,108 @@
+.wholeBlock {
+  position: relative;
+  max-width: 293px;
+  & .container {
+    margin-bottom: 5px;
+    position: relative;
+  }
+  & .select {
+    font-size: 1.5rem;
+    padding: 0.5em 5em 0.5em 1em;
+    background-color: var(--color-primary);
+    color: var(--color-extra-light);
+    max-width: 293px;
+    appearance: none;
+    outline: none;
+    border: 0;
+  }
+
+  & .arrow {
+    background-color: var(--color-info);
+    display: block;
+    height: 100%;
+    width: 2rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    pointer-events: none;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 0;
+
+      border-left: 0.35em solid transparent;
+      border-right: 0.35em solid transparent;
+      border-top: 0.35em solid var(--color-primary-light);
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  & .add {
+    display: flex;
+    position: absolute;
+    align-items: center;
+    max-width: 360px;
+    height: 2.2em;
+    top: 0;
+    left: -18%;
+    gap: 0.2em;
+  }
+  & .rename {
+    right: -18%;
+    left: unset;
+    flex-direction: row-reverse;
+  }
+  & .input {
+    width: 0;
+    height: 100%;
+    transition: width 0.2s, border 0.2s;
+    border: 0 solid transparent;
+    padding: 0.5em 0;
+    color: var(--color-primary);
+    font-size: 1em;
+    outline: 0;
+    border-radius: 8px;
+  }
+  & .inputActive {
+    width: 12.8em;
+    border: 1px solid var(--color-primary);
+    padding: 0.5em 0.75em;
+  }
+  & .button {
+    display: block;
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-primary);
+    border: 0;
+    border-radius: 8px;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    &:hover {
+      & span {
+        height: 24px;
+      }
+    }
+    & img {
+      width: 30px;
+    }
+    & span {
+      transition: all 0.2s;
+      background-color: var(--color-extra-light);
+      display: block;
+      height: 22px;
+      width: 4px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    & span + span {
+      transform: translate(-50%, -50%) rotate(90deg);
+    }
+  }
+}
+

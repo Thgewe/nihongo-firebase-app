@@ -1,6 +1,20 @@
 .line {
   position: relative;
+  display: flex;
 
+  & .number {
+    transition: all 0.5s;
+    max-width: 20px;
+    width: fit-content;
+    padding-top: 10px;
+    margin-right: 10px;
+  }
+  & .container {
+    width: 100%;
+    height: 100%;
+    border-bottom: 1px dotted var(--color-primary);
+    cursor: pointer;
+  }
   & .text {
     min-height: 40px;
     display: flex;
@@ -9,6 +23,7 @@
     line-height: 1em;
     row-gap: 20px;
     transition: opacity 0.2s;
+    flex-grow: 1;
   }
 
   & .input {
@@ -25,7 +40,11 @@
     top: 5px;
     display: block;
   }
-
+  & .numberHide {
+    margin-right: 0;
+    max-width: 0;
+    font-size: 0;
+  }
   & .hidden {
     display: none;
   }

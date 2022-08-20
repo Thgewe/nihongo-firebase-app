@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {memo} from 'react';
 import cl from './customRadioButton.module.scss';
 
-const CustomRadioButton = ({group, id, label, checked, func}) => {
+const CustomRadioButton = memo(({group, id, label, checked, func}) => {
     return (
         <div className={cl.radio}>
             <label htmlFor={id} className={cl.label}>{label}</label>
@@ -16,6 +16,6 @@ const CustomRadioButton = ({group, id, label, checked, func}) => {
             <label htmlFor={id} className={cl.labelInput}></label>
         </div>
     );
-};
+});
 
 export default CustomRadioButton;

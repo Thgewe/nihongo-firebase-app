@@ -6,7 +6,7 @@ const Loader = () => {
         <div className={cl.loader}>
             <svg xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style={{
                 margin: 'auto',
-                background: '#fff',
+                background: 'transparent',
                 display: 'block',
             }} width="200px" height="200px" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
                 <path d="M20 25L80 25L80 75L20 75Z" fill="#36c2e4" stroke="#1c6e82" strokeWidth="2"></path><path d="M50 25L80 25L80 75L50 75" fill="#36c2e4" stroke="#1c6e82" strokeWidth="2" strokeLinejoin="round" strokeLinecap="round">

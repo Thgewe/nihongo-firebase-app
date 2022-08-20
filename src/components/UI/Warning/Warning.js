@@ -7,7 +7,7 @@ const Warning = ({condition, children}) => {
             {children}
         </div>
         :
-        <></>
+        null
 };
 
 export default Warning;

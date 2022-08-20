@@ -10,7 +10,13 @@
   }
 
   & .settings {
-    align-self: flex-end;
+    display: flex;
+    justify-content: space-between;
+  }
+  & .info {
+    height: 30px;
+    width: 30px;
+    background-color: red;
   }
 
   & .book {

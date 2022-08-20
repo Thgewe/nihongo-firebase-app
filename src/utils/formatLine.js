@@ -1,28 +1,9 @@
+// converts the string to the proper array
 export const convertLine = (rawLine) => {
-
-    // const newObj = {
-    //     raw: rawLine, // initial line
-    //     furigana: '', // array of furigana
-    //     kanji: '', // array of kanji
-    //     // hiragana: '',
-    //     kanjiLine: '', // line with kanji
-    //     hiraganaLine: '', // line with kanji replaced with furigana
-    // }
-    // newObj.furigana = newObj.raw.match(/(?<=\[).*?(?=])/g);
-    // newObj.kanji = newObj.raw.match(/(?<=(?<![,.])\s).*?(?=\[)/g);
-    // // newObj.hiragana = [...newObj.raw.match(/(?<=^).*?(?=\s)/g),
-    // //     ...newObj.raw.match(/(?<=]).*?(?=\s)/g)];
-    // newObj.kanjiLine = formatLine(newObj.raw, /\[(?<=\[).*?(?=])]/)
-    // newObj.kanjiLine = formatSigns(formatLine(newObj.kanjiLine, /\s/))
-    // newObj.hiraganaLine = formatSigns(formatLine(
-    //     newObj.raw,
-    //     /[,.\u3000-\u303f\u3040-\u309f\u30a0-\u30ff]/g,
-    //     false
-    // ))
 
     const splitLine = rawLine.split(' ');
 
-    return splitLine.map((elem, i) => {
+    return splitLine.map((elem) => {
         if (elem.includes('[')) {
             return {
                 furigana: elem.match(/(?<=\[).*(?=])/g).join(''),

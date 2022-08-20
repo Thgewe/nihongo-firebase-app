@@ -5,6 +5,8 @@ import svg from '../../images/svg/settings.svg';
 import {useDispatch, useSelector} from "react-redux";
 import {showFurigana, showHiragana, showKanjiOnly} from "../../store/nihongoModeReducer";
 import {applyStyleClass} from "../../utils/applyStyleClass";
+import CustomCheckbox from "../UI/CustomCheckbox/CustomCheckbox";
+import {hideNumber, showNumber} from "../../store/showNumberReducer";
 
 const Settings = () => {
 
@@ -12,7 +14,7 @@ const Settings = () => {
     const [gearClass, setGearClass] = useState(cl.gearImg);
     const mode = useSelector(state => state.nihongoMode)
     const dispatch = useDispatch();
-
+    const checked = useSelector(state => state.showNumber)
 
     const hidePanel = () => {
         applyStyleClass(setPanelClass, cl.panel, cl.hide)
@@ -30,10 +32,15 @@ const Settings = () => {
         if (e.target !== e.currentTarget) return
         hidePanel()
     }
+    const changeNumbering = (e) => {
+        e.target.checked
+            ? dispatch(showNumber())
+            : dispatch(hideNumber())
+    }
     return (
         <div className={cl.settings} >
             <div className={cl.gearBtn} onClick={toggleClass} >
-                <img src={svg} className={gearClass}/>
+                <img src={svg} className={gearClass} alt={''}/>
             </div>
             <div className={panelClass} onMouseLeave={onMouseLeave}>
                 <div className={cl.title}>What to show</div>
@@ -57,6 +64,12 @@ const Settings = () => {
                     label={'hiragana'}
                     checked={mode.furigana && !mode.kanji}
                     func={() => dispatch(showHiragana())}
+                />
+                <div className={cl.title}>Numbering</div>
+                <CustomCheckbox
+                    id={'numbering'}
+                    onChange={changeNumbering}
+                    checked={checked}
                 />
             </div>
         </div>

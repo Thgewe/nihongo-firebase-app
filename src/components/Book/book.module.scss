@@ -1,41 +1,52 @@
 .book {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border-radius: 12px;
   overflow: hidden;
-  background-color: var(--color-primary-alpha);
-  gap: 2px;
-
-  & .sheet {
-    background-color: var(--color-primary-light);
-    width: 100%;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+  background-color: var(--color-primary-light);
+  padding: 20px;
+  position: relative;
+  &::after {
+    content: '';
+    height: 100%;
+    width: 2px;
+    background-color: var(--color-primary-alpha);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  & .line {
-    //width: 100%;
-    width: fit-content;
-    //height: 30px;
-    font-size: 26px;
-    border-bottom: 1px dotted var(--color-primary-alpha);
+  & .lines {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 42px;
+  }
+  & .lines + .lines {
+    margin-top: 20px;
+  }
 
+  & .button {
+    background-color: var(--color-primary);
+    border-radius: 12px;
+    border: none;
     cursor: pointer;
+    padding: 10px;
+    transition: all 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-extra-light);
+    font-family: 'Roboto', sans-serif;
+    z-index: 1000;
+    margin-top: auto;
     &:hover {
-      background-color: var(--color-primary-alpha);
+      font-size: 1.05rem
     }
   }
-
-  & .kanji {
-
-  }
-  & .left {
-
-  }
-  & .right {
-
+  & .button + .button {
+    margin-top: 20px;
   }
 }
