@@ -14,6 +14,17 @@ const Book = () => {
     const uid = auth.currentUser.uid;
     const activeCollection = useSelector(state => state.activeCollection)
 
+    useEffect(() => {
+        // Interval for automatic update of data in firestore
+        const interval = setInterval(() => {
+            updateFirebase()
+        }, FIRESTORE_UPDATE_INTERVAL)
+
+        return () => {
+            clearInterval(interval)
+        }
+    }, [])
+
     useEffect( () => {
         setLoading(true)
         // gets docs from firestore and sets in lines
@@ -31,18 +42,11 @@ const Book = () => {
             setLoading(false)
             setLines(firestoreLines)
         }
+        // if there are new lines, save them to firebase
         if (lines.length !== 0)
-            updateFirebase();
+            updateFirebase(activeCollection.prevCollection);
         getLines()
 
-        // Interval for automatic update of data in firestore
-        const interval = setInterval(() => {
-            updateFirebase()
-        }, FIRESTORE_UPDATE_INTERVAL)
-
-        return () => {
-            clearInterval(interval)
-        }
     }, [activeCollection])
 
 
@@ -63,7 +67,7 @@ const Book = () => {
     }
 
     // updates data in firestore
-    const updateFirebase = () => {
+    const updateFirebase = (coll = activeCollection.collection) => {
         lines.forEach(async (line) => {
             if (line.docRef !== '') {
                 await updateDoc(line.docRef, {
@@ -72,7 +76,7 @@ const Book = () => {
                 })
             } else {
                 await addDoc(
-                    collection(db, 'users', uid, activeCollection.collection), {
+                    collection(db, 'users', uid, coll), {
                         rawNihongo: line.rawNihongo,
                         translation: line.translation,
                         index: line.index,
@@ -114,8 +118,10 @@ const Book = () => {
     return (
         <div className={cl.book}>
             {linesJSX}
-            <button onClick={addLine} className={cl.button}>Add line</button>
-            <button onClick={updateFirebase} className={cl.button}>Save</button>
+            <div className={cl.buttons}>
+                <button onClick={addLine} className={cl.button}>Add line</button>
+                <button onClick={updateFirebase} className={cl.button}>Save</button>
+            </div>
         </div>
     );
 };

@@ -1,4 +1,5 @@
 const defaultState = {
+    prevCollection: '',
     collection: 'dictionary',
     name: 'Dictionary',
     docRef: '',
@@ -10,6 +11,7 @@ export const activeCollectionReducer = (state = defaultState, action) => {
     switch (action.type) {
         case CHANGE_ACTIVE_COLLECTION:
             return {
+                prevCollection: state.collection,
                 ...action.payload
             }
         default:

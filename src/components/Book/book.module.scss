@@ -28,7 +28,18 @@
   & .lines + .lines {
     margin-top: 20px;
   }
-
+  & .buttons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary-light);
+    z-index: 1000;
+    border-top: 2px solid var(--color-primary-alpha);
+    border-bottom: 2px solid var(--color-primary-alpha);
+    //border-radius: 12px;
+    padding: 10px;
+    max-height: 122px;
+  }
   & .button {
     background-color: var(--color-primary);
     border-radius: 12px;
