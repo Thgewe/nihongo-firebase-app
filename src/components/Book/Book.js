@@ -17,7 +17,7 @@ const Book = () => {
     useEffect(() => {
         // Interval for automatic update of data in firestore
         const interval = setInterval(() => {
-            updateFirebase()
+            updateFirebase(activeCollection.collection)
         }, FIRESTORE_UPDATE_INTERVAL)
 
         return () => {
@@ -67,7 +67,7 @@ const Book = () => {
     }
 
     // updates data in firestore
-    const updateFirebase = (coll = activeCollection.collection) => {
+    const updateFirebase = (coll) => {
         lines.forEach(async (line) => {
             if (line.docRef !== '') {
                 await updateDoc(line.docRef, {
@@ -120,7 +120,7 @@ const Book = () => {
             {linesJSX}
             <div className={cl.buttons}>
                 <button onClick={addLine} className={cl.button}>Add line</button>
-                <button onClick={updateFirebase} className={cl.button}>Save</button>
+                <button onClick={() => updateFirebase(activeCollection.collection)} className={cl.button}>Save</button>
             </div>
         </div>
     );
