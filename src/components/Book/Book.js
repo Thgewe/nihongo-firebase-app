@@ -27,21 +27,7 @@ const Book = () => {
 
     useEffect( () => {
         setLoading(true)
-        // gets docs from firestore and sets in lines
-        const getLines = async () => {
-            const firestoreLines = [];
-            const querySnapshot = await getDocs(
-                query(
-                    collection(db, 'users', uid, activeCollection.collection),
-                    orderBy('index')
-                )
-            );
-            querySnapshot.forEach((doc) => {
-                firestoreLines.push({...doc.data(), docRef: doc.ref})
-            })
-            setLoading(false)
-            setLines(firestoreLines)
-        }
+
         // if there are new lines, save them to firebase
         if (lines.length !== 0)
             updateFirebase(activeCollection.prevCollection);
@@ -49,6 +35,22 @@ const Book = () => {
 
     }, [activeCollection])
 
+
+    // gets docs from firestore and sets in lines
+    const getLines = async () => {
+        const firestoreLines = [];
+        const querySnapshot = await getDocs(
+            query(
+                collection(db, 'users', uid, activeCollection.collection),
+                orderBy('index')
+            )
+        );
+        querySnapshot.forEach((doc) => {
+            firestoreLines.push({...doc.data(), docRef: doc.ref})
+        })
+        setLoading(false)
+        setLines(firestoreLines)
+    }
 
     // event when a line changes
     const changeLine = (text, index, isKanji) => {
@@ -113,6 +115,12 @@ const Book = () => {
         }])
     }
 
+    const onSave = async () => {
+        // updates remote data and retrieves it
+        await updateFirebase(activeCollection.collection);
+        await getLines();
+    }
+
     if (loading) return <Loader />
 
     return (
@@ -120,7 +128,7 @@ const Book = () => {
             {linesJSX}
             <div className={cl.buttons}>
                 <button onClick={addLine} className={cl.button}>Add line</button>
-                <button onClick={() => updateFirebase(activeCollection.collection)} className={cl.button}>Save</button>
+                <button onClick={onSave} className={cl.button}>Save</button>
             </div>
         </div>
     );
